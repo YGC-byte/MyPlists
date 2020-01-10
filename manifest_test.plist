@@ -11,7 +11,7 @@
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>http://192.168.1.166/app/ipa/3.4/iqiyi.ipa</string>
+					<string>http://192.168.1.166/app/ipa/debug/app.ipa</string>
 				</dict>
 				<dict>
 					<key>kind</key>
