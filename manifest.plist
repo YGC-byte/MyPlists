@@ -29,9 +29,9 @@
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>com.jiuweiplayer.one</string>
+				<string>string $bundleId</string>
 				<key>bundle-version</key>
-				<string>3.4</string>
+				<string>$version</string>
 				<key>kind</key>
 				<string>software</string>
 				<key>title</key>
