@@ -35,7 +35,7 @@
 				<key>kind</key>
 				<string>software</string>
 				<key>title</key>
-				<string>爱奇异(安装失败&gt;卸载旧版本&gt;或者请到开发人员处添加UDID)</string>
+				<string>爱奇异(如果安装失败:卸载旧版本,或者请到开发人员处添加UDID)</string>
 			</dict>
 		</dict>
 	</array>
