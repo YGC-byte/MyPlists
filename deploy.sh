@@ -3,9 +3,8 @@ echo "================================================================"
 echo "请确保ipa已在当前目录下"
 echo "注意⚠️: 一次只能部署一种环境，请不要放多个ipa到当前目录下"
 echo "================================================================"
-
-#建立软链接 直接使用`PlistBuddy`
-ln -s /usr/libexec/PlistBuddy /usr/local/bin/PlistBuddy
+# release_version=`/usr/libexec/PlistBuddy -c 'Print :items:0:metadata:bundle-version' ./manifest.plist`
+# debug_version=`/usr/libexec/PlistBuddy -c 'Print :items:0:metadata:bundle-version' ./manifest_test.plist`
 
 read -p "部署Release环境（y/n）:      " env
 if [[ -n "$env" ]]; then
@@ -25,16 +24,12 @@ else
 	env="y"
 fi
 
-read -p "版本号: " version
+read -p "版本号(版本号为必填项): " version
 if [[ -n "$version" ]]; then
 	echo "${version}"
 else
-	if [[ "$env" = "y" ]]; then
-  	  version=plistbuddy -c 'Print :items:0:metadata:bundle-version' ./manifest.plist
-  	else
-  	  version=plistbuddy -c 'Print :items:0:metadata:bundle-version' ./manifest_test.plist
- 	fi
- 	echo "默认版本号为: ${version}"
+ 	echo "版本号不可为空!!!"
+ 	exit 1
 fi
 
 read -p "应用的BundleId(不填写则默认不修改): " bundleId
@@ -42,9 +37,9 @@ if [[ -n "$bundleId" ]]; then
 	echo "${bundleId}"
 else
   	if [[ "$env" = "y" ]]; then
-  	  bundleId=plistbuddy -c 'Print :items:0:metadata:bundle-identifier' ./manifest.plist
+  	  bundleId=`/usr/libexec/PlistBuddy -c 'Print :items:0:metadata:bundle-identifier' ./manifest.plist`
   	else
-  	  bundleId=plistbuddy -c 'Print :items:0:metadata:bundle-identifier' ./manifest_test.plist
+  	  bundleId=`/usr/libexec/PlistBuddy -c 'Print :items:0:metadata:bundle-identifier' ./manifest_test.plist`
  	fi
 fi
 
@@ -57,12 +52,12 @@ fi
  
  
 if [[ "$env" = "y" ]]; then
-  plistbuddy -c 'Set :items:0:metadata:bundle-version "$version"' ./manifest.plist
-  plistbuddy -c 'Set :items:0:metadata:bundle-identifier string "$bundleId"' ./manifest.plist
+  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-version "$version"' ./manifest.plist
+  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-identifier string "$bundleId"' ./manifest.plist
   sudo cp -f ./*ipa  /Library/WebServer/Documents/app/ipa/release/app.ipa
 else
-  plistbuddy -c 'Set :items:0:metadata:bundle-version "$version"' ./manifest_test.plist
-  plistbuddy -c 'Set :items:0:metadata:bundle-identifier string "$bundleId"' ./manifest_test.plist
+  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-version "$version"' ./manifest_test.plist
+  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-identifier string "$bundleId"' ./manifest_test.plist
   sudo cp -f ./*ipa  /Library/WebServer/Documents/app/ipa/debug/app.ipa
 fi
 
