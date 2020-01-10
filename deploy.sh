@@ -62,6 +62,13 @@ else
 fi
 
 echo "🎉🎉🎉 部署成功！！！"
+if [[ "$env" = "y" ]]; then
+	echo "http://192.168.1.166/app/ipa/release/app.ipa"	
+	else
+	echo "http://192.168.1.166/app/ipa/debug/app.ipa"
+fi
+
+open /Library/WebServer/Documents/app/ipa
 
 rm -rf *.ipa #移除记录 
 
@@ -70,3 +77,5 @@ echo "🚀🚀🚀提交代码"
 git add .
 git commit -am  "$commit_message"
 git push origin master 
+
+
