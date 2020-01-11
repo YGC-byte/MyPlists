@@ -1,8 +1,9 @@
 # 局域网部署OTA安装内测ipa包
-![如图](./../_media/ota/1.png)
+![如图](./img/1.png)
 
 最终效果如图，必须要使用`safari`打开,`plist`文件的地址必须支持`https`(这里采用了业界取巧的方式托管在`github`上)，点击【安装】按钮之后，才会弹窗 【取消】-【安装】
 *关键代码*
+
 ```html
 <a href="itms-services://?action=download-manifest&url=https://raw.githubusercontent.com/xxx/MyPlists/master/manifest_v3.4.plist"> 安装 </a>
 ```
@@ -71,13 +72,15 @@ webServer
 
 #### 准备好ipa包和plist文件
  先上图，再解释
- ![ipa放到apache目录下](../_media/ota/3.png)
+ ![ipa放到apache目录下](./img/3.png)
+
 * 部署到`/Library/WebServer/Documents`目录下即可
 * 查看本机`ip` , 根据`ipa`实际路径得出`URL`地址 `192.168.1.101/app/ipa/3.4/xxx.ipa` 
 * 把URL配置到`manifest.plist`文件中的`ipa`地址
 
- ![manifest.plist的配置](../_media/ota/2.png)
+ ![manifest.plist的配置](./img/2.png)
 *需要配置以下几个配置:*
+
   * 应用的`bundleID`
   * `app`的应用名称
   * `57x57`和`512x512`的`logo`图标
