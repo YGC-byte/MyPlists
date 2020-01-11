@@ -52,12 +52,12 @@ fi
  
  
 if [[ "$env" = "y" ]]; then
-  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-version "$version"' ./manifest.plist
-  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-identifier string "$bundleId"' ./manifest.plist
+  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-version string $version' ./manifest.plist
+  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-identifier string $bundleId' ./manifest.plist
   sudo cp -f ./*ipa  /Library/WebServer/Documents/app/ipa/release/app.ipa
 else
-  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-version "$version"' ./manifest_test.plist
-  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-identifier string "$bundleId"' ./manifest_test.plist
+  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-version string $version' ./manifest_test.plist
+  /usr/libexec/PlistBuddy -c 'Set :items:0:metadata:bundle-identifier string $bundleId' ./manifest_test.plist
   sudo cp -f ./*ipa  /Library/WebServer/Documents/app/ipa/debug/app.ipa
 fi
 
