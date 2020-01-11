@@ -66,6 +66,10 @@ movePathToApache (){
 webServer
 
 ```
+**shell脚本如何不切换到对应的目录下就可以一个命令敲出来全局使用呢？**
+> 把shell加入到环境变量中即可,一般在`~/.zshrc`或者`~/.bash_profile`设置
+>
+> 可参考 [macOS 修改bash环境变量PATH及自建脚本直接输入脚本名执行的方法](https://blog.csdn.net/ly20091130/article/details/77449824)
 
 [Mac OS原来自带了apache，基本用法总结](https://blog.csdn.net/seafishyls/article/details/44546809)
 [mac os下的Apache配置 macOS Sierra 10.12](https://www.jianshu.com/p/f56815569234)
