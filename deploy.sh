@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "================================================================"
-echo "请确保ipa已在当前目录下"
+echo "请确保app.ipa已在当前目录下"
 echo "注意⚠️: 一次只能部署一种环境，请不要放多个ipa到当前目录下"
 echo "================================================================"
 release_version=`/usr/libexec/PlistBuddy -c 'Print :items:0:metadata:bundle-version' ./manifest.plist`
@@ -9,7 +9,7 @@ release_bundleId=`/usr/libexec/PlistBuddy -c 'Print :items:0:metadata:bundle-ide
 debug_bundleId=`/usr/libexec/PlistBuddy -c 'Print :items:0:metadata:bundle-identifier' ./manifest_test.plist`
 
 if [ ! -f "./app.ipa" ]; then
-   echo "当前目录下未检测到ipa文件"
+   echo "当前目录下未检测到app.ipa文件"
    exit 1
 fi
 
@@ -59,7 +59,7 @@ else
  	fi
 fi
 
-read -p "部署版本描述信息: " commit_message
+read -p "部署版本描述信息(需要加双引号字符串格式): " commit_message
 if [[ -n "$commit_message" ]]; then
 	echo "$commit_message"
 else
