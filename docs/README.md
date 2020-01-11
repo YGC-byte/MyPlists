@@ -79,6 +79,9 @@ webServer
 * 把URL配置到`manifest.plist`文件中的`ipa`地址
 
  ![manifest.plist的配置](./img/2.png)
+
+
+
 *需要配置以下几个配置:*
 
   * 应用的`bundleID`
